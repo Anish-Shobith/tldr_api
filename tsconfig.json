@@ -17,6 +17,7 @@
 		"noPropertyAccessFromIndexSignature": true,
 		"noEmitOnError": true,
 		"useDefineForClassFields": true,
-		"skipLibCheck": true
+		"skipLibCheck": true,
+		"outDir": "build"
 	}
 }
