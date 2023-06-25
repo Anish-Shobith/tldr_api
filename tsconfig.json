@@ -18,6 +18,5 @@
 		"noEmitOnError": true,
 		"useDefineForClassFields": true,
 		"skipLibCheck": true,
-		"outDir": "build"
 	}
 }

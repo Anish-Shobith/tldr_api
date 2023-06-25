@@ -6,7 +6,7 @@
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
-    "build": "swc src -d dist --copy-files --delete-dir-on-start -d build",
+    "build": "swc src -d dist --copy-files --delete-dir-on-start",
     "lint": "rome check src --apply-suggested",
     "format": "rome format src --write",
     "start": "node dist/index.js"
