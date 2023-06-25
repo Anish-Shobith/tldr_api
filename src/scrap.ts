@@ -1,5 +1,6 @@
 import * as cheerio from 'cheerio';
 import { fetch } from 'undici';
+import he from 'he';
 import { Data, Story } from './type.js';
 
 /**
@@ -58,14 +59,16 @@ export class Scrap {
             stories.push({
                 id: story.id,
                 url: story.url,
-                title: story.title,
+                title: this.cleanText(story.title),
                 tldr: this.cleanText(story.tldr),
                 date: story.date,
-                category: story.category,
+                category: story.category.split(new RegExp(`(${page})`)).join(' '),
                 newsletter: story.newsletter
             } satisfies Story);
         }
-        return stories;
+        return stories
+            .filter(story => story.url !== 'mailto:jobs@tldr.tech')
+            .filter(story => !story.title.includes('Sponsor'));
     }
 
     /**
@@ -89,9 +92,9 @@ export class Scrap {
      * @returns {string} The cleaned text
      */
     private cleanText(text: string): string {
-        return text.replace(/<\/?[^>]+(>|$)/g, "");
+        return he.decode(text).replace(/<\/?[^>]+(>|$)/g, "");
     }
-    
+
 }
 
-export type Page = 'tech' | 'ai' | 'crypto';
+export type Page = 'tech' | 'ai' | 'crypto' | 'engineering' | 'founders';

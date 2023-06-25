@@ -25,6 +25,16 @@ app.get('/api/crypto', async (_req, res) => {
     res.status(200).json(data);
 });
 
+app.get('/api/engineering', async (_req, res) => {
+    const data = await scrap.latest('engineering');
+    res.status(200).json(data);
+});
+
+app.get('/api/founders', async (_req, res) => {
+    const data = await scrap.latest('founders');
+    res.status(200).json(data);
+});
+
 app.listen(3000, () => {
     console.log('Server started on port 3000');
 });
