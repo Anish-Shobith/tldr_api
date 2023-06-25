@@ -35,6 +35,7 @@ app.get('/api/founders', async (_req, res) => {
     res.status(200).json(data);
 });
 
-app.listen(3000, () => {
+// @ts-ignore
+app.listen(process.env.PORT || 3000, () => {
     console.log('Server started on port 3000');
 });
